@@ -1,0 +1,17 @@
+{
+  "name": "ssg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "node ./build.js"
+  },
+  "keywords": [],
+  "author": "Brian Holt",
+  "license": "Apache-2.0",
+  "description": "The most basic SSG ever",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
