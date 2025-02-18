@@ -1,4 +1,4 @@
-import { renderToString } from "react-dom/server";
+import { renderToStaticMarkup } from "react-dom/server";
 import { createElement as h } from "react";
 import {
   readFileSync,
@@ -18,7 +18,7 @@ const distPath = path.join(__dirname, "dist");
 
 const shell = readFileSync(path.join(__dirname, "index.html"), "utf8");
 
-const app = renderToString(h(App));
+const app = renderToStaticMarkup(h(App));
 const html = shell.replace("<!--ROOT-->", app);
 
 // Create dist folder if it doesn't exist
