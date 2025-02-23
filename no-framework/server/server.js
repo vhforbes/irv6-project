@@ -1,12 +1,10 @@
 const path = require("node:path");
-const stream = require("node:stream");
 const { readFileSync } = require("node:fs");
-const { finished } = require("node:stream/promises");
 const Fastify = require("fastify");
 const fastifyStaticPlugin = require("@fastify/static");
 const React = require("react");
 const { renderToPipeableStream } = require("react-server-dom-webpack/server");
-const AppImport = require("../src/app/App.jsx");
+const AppImport = require("../src/App.jsx");
 
 const App = AppImport.default;
 
@@ -15,23 +13,13 @@ const MANIFEST = readFileSync(
   "utf8"
 );
 const MODULE_MAP = JSON.parse(MANIFEST);
-
-const HTML_SHELL = readFileSync(
-  path.resolve(__dirname, "../dist/index.html"),
-  "utf8"
-);
-
 const PORT = process.env.PORT ? process.env.PORT : 3000;
 
 const fastify = Fastify({
   logger: {
     transport: {
       target: "pino-pretty",
-      options: {
-        ignore: "pid,hostname",
-      },
     },
-    level: "debug",
   },
 });
 
@@ -46,41 +34,14 @@ fastify.register(fastifyStaticPlugin, {
 });
 
 fastify.get("/", async function rootHandler(request, reply) {
-  let flightResponse = "";
-  const flightStream = new stream.Writable({
-    write: (chunk, encoding, next) => {
-      request.log.debug("accumulating React Flight chunk");
-      request.log.debug(String(chunk));
-      flightResponse += chunk;
-      next();
-    },
-  });
-  const { pipe } = renderToPipeableStream(React.createElement(App), MODULE_MAP);
-  pipe(flightStream);
-  await finished(flightStream);
-  request.log.info("accumulated React Flight Response.");
-  request.log.info(
-    "serving HTML shell with injected inline Flight response ..."
-  );
-  reply.header("Content-Type", "text/html");
-  return HTML_SHELL.replace("<!--FLIGHT-->", JSON.stringify(flightResponse));
+  return reply.sendFile("index.html");
 });
 
 fastify.get("/react-flight", function reactFlightHandler(request, reply) {
   try {
-    if (!request.query.props) {
-      throw new Error("Missing expected 'props' querystring parameter");
-    }
-
-    const props = JSON.parse(request.query.props);
-    request.log.debug(
-      "incoming /react-flight request with props, validating ...",
-      { props }
-    );
-
     reply.header("Content-Type", "application/octet-stream");
     const { pipe } = renderToPipeableStream(
-      React.createElement(App, props),
+      React.createElement(App),
       MODULE_MAP
     );
     pipe(reply.raw);
@@ -89,6 +50,20 @@ fastify.get("/react-flight", function reactFlightHandler(request, reply) {
     throw err;
   }
 });
+
+// fastify.get("/react-flight", function reactFlightHandler(request, reply) {
+//   try {
+//     reply.header("Content-Type", "application/octet-stream");
+//     return reply.send(`3:I["./src/ClientComponent.jsx",["vendors-node_modules_react_jsx-dev-runtime_js","vendors-node_modules_react_jsx-dev-runtime_js.chunk.js","client0","client0.chunk.js"],""]
+// 1:{"name":"App","env":"Server","key":null,"owner":null,"props":{}}
+// 0:D"$1"
+// 0:["$","div",null,{"children":[["$","h1",null,{"children":"Notes App"},"$1"],["$","$L3",null,{},"$1"]]},"$1"]
+// `);
+//   } catch (err) {
+//     request.log.error("react-flight err", err);
+//     throw err;
+//   }
+// });
 
 module.exports = async function start() {
   try {
