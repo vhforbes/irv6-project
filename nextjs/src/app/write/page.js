@@ -10,7 +10,6 @@ export default async function Write() {
 
   return (
     <div>
-      <p>TODO: Post note via server action</p>
       <fieldset className="note-fieldset">
         <legend>Write a new note</legend>
         <form action={postNote} className="note-form">

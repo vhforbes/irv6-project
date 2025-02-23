@@ -23,7 +23,9 @@ export default function TeacherClientPage({ fetchNotes, initialNotes }) {
         {notes.map((note) => (
           <li key={note.id}>
             <fieldset>
-              <h2>{note.from_user}</h2>
+              <h2>
+                from: {note.from_user} | to: {note.to_user}
+              </h2>
               <p>{note.note}</p>
             </fieldset>
           </li>

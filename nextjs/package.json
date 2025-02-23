@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "reset:db": "sqlite3 notes.db < seed.sql"
   },
   "dependencies": {
     "doodle.css": "^0.0.2",

@@ -1,6 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Short+Stack&display=swap");
 body {
-  font-family: "Rock Salt", cursive;
+  font-family: "Short Stack", cursive;
+  padding: 50px;
 }
 
 /* Minimal CSS Reset */
@@ -40,7 +41,7 @@ select {
 .doodle textarea,
 .doodle input,
 .doodle select {
-  font-family: "Rock Salt", cursive;
+  font-family: "Short Stack", cursive;
 }
 
 .doodle button {

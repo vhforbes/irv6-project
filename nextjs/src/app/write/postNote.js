@@ -2,14 +2,11 @@
 import { AsyncDatabase } from "promised-sqlite3";
 
 export default async function postNote(formData) {
+  console.log("postNote called", formData);
+
   const from = formData.get("from_user");
   const to = formData.get("to_user");
   const note = formData.get("note");
-
-  console.log("from", from);
-  console.log("to", to);
-  console.log("note", note);
-  console.log("formData", formData);
 
   if (!from || !to || !note) {
     throw new Error("All fields are required");

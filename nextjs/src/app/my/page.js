@@ -24,8 +24,8 @@ export default async function MyNotes() {
   return (
     <div>
       <h1>My Notes</h1>
-      <div>
-        <h2>Notes To You</h2>
+      <fieldset>
+        <legend>Notes To You</legend>
         <table>
           <thead>
             <tr>
@@ -44,9 +44,9 @@ export default async function MyNotes() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div>
-        <h2>Notes From You</h2>
+      </fieldset>
+      <fieldset>
+        <legend>Notes From You</legend>
         <table>
           <thead>
             <tr>
@@ -65,7 +65,7 @@ export default async function MyNotes() {
             ))}
           </tbody>
         </table>
-      </div>
+      </fieldset>
     </div>
   );
 }
