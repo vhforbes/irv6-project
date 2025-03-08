@@ -13,6 +13,9 @@ export default function Home() {
         <li>
           <Link href="/teacher">Secret Teacher Feed</Link>
         </li>
+        <li>
+          <Link href="/who-am-i">Who Am I</Link>
+        </li>
       </ul>
     </div>
   );
