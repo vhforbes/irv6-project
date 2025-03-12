@@ -34,6 +34,8 @@ export default function App() {
         <option value={3}>Game 3</option>
         <option value={4}>Game 4</option>
         <option value={5}>Game 5</option>
+        <option value={6}>Game 6</option>
+        <option value={7}>Game 7</option>
       </select>
       <div className={`loading-container ${isPending ? "loading" : ""}`}>
         {" "}
@@ -42,7 +44,10 @@ export default function App() {
       <div>
         <Score
           isPending={isPending}
-          game={game}
+          homeImage={score.homeImage}
+          homeName={score.homeName}
+          awayImage={score.awayImage}
+          awayName={score.awayName}
           home={score.home}
           away={score.away}
         />

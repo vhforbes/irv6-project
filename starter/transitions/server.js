@@ -1,9 +1,6 @@
 import http from "node:http";
 
-const scores = Array.from({ length: 5 }, () => ({
-  home: 0,
-  away: 0,
-}));
+import scores from "./teams.js";
 
 // times in milliseconds
 const WAIT_TIME = 5000;
@@ -29,7 +26,9 @@ function rerenderScores() {
   console.clear();
   scores.forEach((score, index) => {
     console.log(
-      `Game ${index + 1}:\t\t HOME: ${score.home} \t – \t AWAY: ${score.away}`
+      `Game ${index + 1}:\t\t ${score.homeName}: ${score.home} ${
+        score.homeName.length < 10 ? "\t" : ""
+      } \t – \t ${score.awayName}: ${score.away}`
     );
   });
 }

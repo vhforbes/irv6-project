@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Short+Stack&display=swap");
+body {
+  font-family: "Short Stack", cursive;
+}
+
+h1 {
+  color: #14d117;
+}
+
 /* Minimal CSS Reset */
 * {
   margin: 0;
@@ -8,7 +17,6 @@
 html,
 body {
   height: 100%;
-  font-family: sans-serif;
 }
 
 img {
@@ -50,9 +58,6 @@ body {
   background-color: #222;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 #root {
@@ -85,9 +90,105 @@ select {
   color: #14d117;
   border: 2px #14d117 solid;
   border-radius: 5px;
+  font: inherit;
 }
 
-select:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+form > * {
+  margin-bottom: 10px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #14d117;
+  max-width: 95%;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px;
+  line-height: 1.3;
+}
+
+li::after {
+  content: "*";
+  display: block;
+  margin-top: 5px;
+}
+
+li:last-child::after {
+  content: "";
+}
+
+button {
+  font: inherit;
+  padding: 10px 20px;
+  background-color: #14d117;
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  background-color: #00ff04;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #14d117;
+  border-radius: 5px;
+  background-color: #222;
+  color: #14d117;
+  font: inherit;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #00ff04;
+}
+
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.app img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+}
+
+.markdown-editor {
+}
+
+.markdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.markdown > * {
+  height: 400px;
+  width: 50%;
+  overflow: scroll;
+}
+
+.score img {
+  max-width: 250px;
+  margin: 15px;
 }

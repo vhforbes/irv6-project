@@ -90,6 +90,7 @@ select {
   color: #14d117;
   border: 2px #14d117 solid;
   border-radius: 5px;
+  font: inherit;
 }
 
 form {
@@ -185,4 +186,9 @@ textarea:focus {
   height: 400px;
   width: 50%;
   overflow: scroll;
+}
+
+.score img {
+  max-width: 250px;
+  margin: 15px;
 }
