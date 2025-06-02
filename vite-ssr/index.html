@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>React ssr example</title>
+    <!--  async => stop html parser until it stops downloading client.js // defer => only execute after the html has been parsed. // https://i.sstatic.net/wfL82.png   -->
+    <script async defer type="module" src="./client.js"></script>
+  </head>
+  <body>
+    <div id="root"><!--ROOT--></div>
+  </body>
+</html>
