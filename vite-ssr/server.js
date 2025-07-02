@@ -21,12 +21,16 @@ app.register(fastifyStatic, {
   prefix: "/",
 });
 
+// Split the html into parts so we only replace inner HTML.
 const parts = shell.split("<!--ROOT-->");
 
 // Separating into parts so that we flush the head asap
 app.get("/", (req, reply) => {
   reply.raw.write(parts[0]); // what is this?
   const reactApp = renderToString(h(App));
+
+  console.log(reactApp);
+
   reply.raw.write(reactApp);
   reply.raw.write(parts[1]);
   reply.raw.end();

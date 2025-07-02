@@ -34,6 +34,7 @@ fastify.register(fastifyStaticPlugin, {
 });
 
 fastify.get("/", async function rootHandler(request, reply) {
+  console.log("getting index.html");
   return reply.sendFile("index.html");
 });
 

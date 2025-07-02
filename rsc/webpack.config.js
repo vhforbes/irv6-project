@@ -1,5 +1,7 @@
 const path = require("node:path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+// Actually called ReactFlightWebpackPlugin on the React Repo
 const ReactServerWebpackPlugin = require("react-server-dom-webpack/plugin");
 
 const mode = process.env.NODE_ENV || "development";
